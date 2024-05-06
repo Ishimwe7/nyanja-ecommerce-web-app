@@ -1,0 +1,120 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* #menu{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 20px 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    gap: 35%; 
+     align-items: center; 
+     position: absolute; 
+     background: black; 
+} */
+
+#header{
+    display: flex;
+    justify-content:flex-start;
+    align-items: center;
+    margin: 0;
+    padding: 0 20px;
+    gap:40%;  
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgb(29, 28, 28);
+}
+#logo img{
+    width: 60px;
+    height: auto;
+    border-radius: 50%;
+}
+ul#nav-links{
+    display: flex;
+    /* gap: 0%; */
+    float: right;
+    list-style: none;
+}
+ul#nav-links li{
+    width: fit-content;
+    width: 100px;
+    margin: 0;
+    padding: 0;
+    color: white;
+    font-size: larger;
+}
+
+ul#nav-links li:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+#products_categories{
+    background: white;
+    padding: 10px;
+    margin: auto;
+    border-radius: 10px;
+    position: absolute;
+    top: 80px;
+    right: 300px;
+    /* display: none; */
+}
+ul#products_categories li{
+    list-style: none;
+    display: block;
+    font-size: large;
+    text-align: left;
+    margin: 10px;
+}
+ul#products_categories li a{
+    color: rgb(4, 10, 58);
+}
+ul#products_categories li:hover{
+    text-decoration: underline;
+}
+ul#nav-links #login{
+    background: white;
+    color: rgb(4, 10, 58);
+    border-radius: 20px;
+    padding: 4px 7px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+}
+ul#nav-links #register{
+    background: rgb(206, 151, 22);
+    color: white;
+    border-radius: 20px;
+    padding: 4px 7px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 130px;
+}
+ul#nav-links #register a:hover,ul#nav-links #login a:hover{
+    opacity: 0.7;
+}
+#sign{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   background: white;
+   border-radius: 20px;
+   height: fit-content;
+   margin-left: 30px;
+}
+.icons{
+    color:  rgb(206, 151, 22);
+    font-size: larger;
+    margin: 0 3px;
+}
+#register .icons{
+    color: black;
+}

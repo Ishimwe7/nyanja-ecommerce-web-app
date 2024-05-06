@@ -1,0 +1,10 @@
+#products_categories{
+    background: white;
+    padding: 10px;
+    margin: auto;
+}
+ul#products_categories li{
+    list-style: none;
+    display: block;
+    font-size: large;
+}

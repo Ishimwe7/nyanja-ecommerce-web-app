@@ -1,0 +1,41 @@
+#footer{
+    display: flex;
+    justify-content: space-between;
+    /* align-items: center; */
+    position: absolute;
+   
+    width: 100%;
+    color: white;
+    padding: 20px;
+    background: black;
+}
+#footer ul{
+    list-style: none;
+    padding: 10px 0;
+}
+#footer ul li{
+    font-size: medium;
+}
+#footer a{
+    color: white;
+}
+#footer a:hover{
+    text-decoration: underline;
+}
+.foot-el{
+    width: 33%;
+    font-weight: lighter;
+}
+.foot-el h3{
+    color: rgb(206, 151, 22);
+}
+/* h3.head{
+    position: absolute;
+    top: 20px;
+} */
+
+.icons{
+    color:  rgb(206, 151, 22);
+    font-size: x-large;
+    margin: 0 5px;
+}
