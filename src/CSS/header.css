@@ -50,7 +50,8 @@ ul#nav-links li{
     font-size: larger;
 }
 
-ul#nav-links li:hover{
+
+ul#nav-links .normal-links:hover{
     cursor: pointer;
     text-decoration: underline;
 }
@@ -110,7 +111,13 @@ ul#nav-links #register a:hover,ul#nav-links #login a:hover{
    height: fit-content;
    margin-left: 30px;
 }
-.icons{
+#sign .links{
+    color: white;
+}
+#sign .log-links{
+    color: black;
+}
+#login .icons{
     color:  rgb(206, 151, 22);
     font-size: larger;
     margin: 0 3px;

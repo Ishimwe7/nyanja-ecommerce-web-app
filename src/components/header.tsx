@@ -1,7 +1,7 @@
 import '../CSS/header.css'
 import logo from '../assets/pictures/e-logo.avif'
 import { useState, useRef } from 'react';
-//import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 //import Products from './products_categories';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUtensils, faShoePrints, faLaptop, faGem, faTShirt, faSignInAlt, faUserPlus } from '@fortawesome/free-solid-svg-icons';
@@ -27,14 +27,14 @@ const Header = () => {
             <img src={logo} alt="logo image" />
         </div>
         <ul id="nav-links">
-            <li>Home</li>
-            <li>About Us</li>
-            <li onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>Products</li>
-            <li>Contact Us</li>
+            <li className='normal-links'>Home</li>
+            <li className='normal-links'>About Us</li>
+            <li className='normal-links' onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>Products</li>
+            <li className='normal-links'>Contact Us</li>
             <div id='sign'>
-                {/* <li id='register'><Link to="/register">Register</Link><FontAwesomeIcon className='icons' icon={faUserPlus} /></li> */}
-                <li id='register'>Register<FontAwesomeIcon className='icons' icon={faUserPlus} /></li>
-                <li id='login'>Login<FontAwesomeIcon className='icons' icon={faSignInAlt} /></li>
+                <li id='register'><Link className='links' to="/register">Register</Link><FontAwesomeIcon className='icons' icon={faUserPlus} /></li>
+                {/* <li id='register'>Register<FontAwesomeIcon className='icons' icon={faUserPlus} /></li> */}
+                <li id='login'><Link className='log-links' to="/login">Login</Link><FontAwesomeIcon className='icons' icon={faSignInAlt} /></li>
             </div>
         </ul>
         {showComponent &&

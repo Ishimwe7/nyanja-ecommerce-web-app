@@ -1,0 +1,99 @@
+
+#registration{
+    background-image: url('../assets/pictures/back2.jpeg');
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-position: center;
+    height: auto;
+    margin: auto;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+}
+
+#sign-in{
+    background-image: url('../assets/pictures/back2.jpeg');
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-position: center;
+    height: 100vh;
+    margin: auto;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+}
+
+#sign-header{
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    font-size: x-large;
+    position: sticky;
+    top: 20px;
+}
+#sign-header img{
+    width: 80px;
+    height: auto;
+    border-radius: 50%;
+}
+
+#reg-form{
+    display: flex;
+    flex-direction: column;
+    color: white;
+    justify-content: center;
+    width: 40%;
+    margin: auto;
+    border: 5px solid black;
+    border-radius: 20px;
+    padding: 20px;
+}
+#reg-form h2{
+   color: rgb(206, 151, 22);
+   font-size: xx-large;
+}
+.row{
+    margin: 5px;
+    text-align: left;
+}
+.row label{
+    display: block;
+    width: 200px;
+    font-size: larger;
+}
+.row input {
+    width: 100%;
+    height: 35px;
+    background: black;
+    color: white;
+    padding: 10px;
+    font-size: large;
+    border-radius: 10px;
+}
+#reg-form p#already{
+    font-size: large;
+    color: rgb(206, 151, 22);
+}
+#reg-form button{
+    background: white;
+    color: black;
+    width: 60%;
+    border-radius: 20px;
+    font-size: larger;
+    margin: 10px;
+}
+#reg-form p.response{
+    font-size: x-large;
+}
+#reg-form p#success{
+    color: green;
+}
+#reg-form p#error{
+    color: red;
+}
+.link{
+    color: rgb(206, 151, 22);
+}
+.link:hover{
+    color: white;
+}
