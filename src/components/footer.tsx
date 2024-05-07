@@ -5,7 +5,7 @@ import { faEnvelope, faPhoneAlt, faMapMarkerAlt, faBuilding } from '@fortawesome
 import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
 
 const Footer = () => {
-    return <>
+    return <div>
         <div id="footer">
             <div id="f-contacts" className='foot-el'>
                 <h3 className='head'>Contacts</h3>
@@ -33,6 +33,7 @@ const Footer = () => {
                 </ul>
             </div>
         </div>
-    </>
+        <p id='rights'>All rigths reserved &copy; nyanjashoppingmall~2024</p>
+    </div>
 }
 export default Footer;

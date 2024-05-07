@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUtensils, faShoePrints, faLaptop, faGem, faTShirt, faSignInAlt, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 const Header = () => {
     const [showComponent, setShowComponent] = useState(false);
-    const timeoutRef = useRef(null);
+    const timeoutRef = useRef(0);
 
     const handleMouseEnter = () => {
         //setShowComponent(true);
