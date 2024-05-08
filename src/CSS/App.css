@@ -13,7 +13,7 @@
 }
 
 #home{
-  background-image: url('../src/assets/pictures/back2.jpeg');
+  background-image: url('../assets/pictures/back2.jpeg');
   background-repeat: no-repeat;
   background-size:cover;
   background-position: center;
