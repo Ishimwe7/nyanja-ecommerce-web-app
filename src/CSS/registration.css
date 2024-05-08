@@ -83,7 +83,7 @@
     margin: 10px;
 }
 #reg-form p.response{
-    font-size: x-large;
+    font-size: larger;
 }
 #reg-form p#success{
     color: green;

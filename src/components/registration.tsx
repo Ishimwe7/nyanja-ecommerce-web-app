@@ -2,6 +2,7 @@ import { useState } from 'react';
 import logo from '../assets/pictures/e-logo.avif'
 import '../CSS/registration.css'
 import { Link } from 'react-router-dom';
+import { FormEvent, ChangeEvent } from 'react';
 
 const RegistrationForm = () => {
 
@@ -17,14 +18,14 @@ const RegistrationForm = () => {
     const [response, setResponse] = useState('');
     const [error, setError] = useState('');
 
-    const handleChange = (e) => {
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setFormData({
             ...formData,
             [name]: value
         });
     };
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
         try {
             const response = await fetch(api_url + '/register', {
@@ -34,8 +35,16 @@ const RegistrationForm = () => {
                 },
                 body: JSON.stringify(formData)
             });
-            const data = await response.json();
-            setResponse(data);
+            console.log(formData)
+            const data = await response.text();
+            if (data !== "Registration done Successfully!") {
+                setResponse('');
+                setError(data);
+            }
+            else {
+                setError('');
+                setResponse(data);
+            }
         } catch (error) {
             console.error('Error:', error);
             setError('An unexpected error occurred');
