@@ -1,0 +1,56 @@
+#view-products{
+    background-image: url('../assets/pictures/back2.jpeg');
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-position: center;
+    width: 82%;
+    height:100vh;
+    position: absolute;
+    overflow-y: scroll;
+    left: 18%;
+    padding: 50px 0;
+    color: white;
+    
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+#view-products::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+#view-products {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+#view-products .products-list{
+    width: 96%;
+    /* height: 100%; */
+    margin: 20px auto;
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: center;
+    /* background-color: black; */
+    border-radius: 20px;
+}
+
+#view-products .product{
+    background-color: black;
+    width: calc(30% - 20px);
+    height: 200px;
+    margin: 20px auto;
+    border-radius: 10px;
+    padding: 10px;
+    border: 1px solid white;
+}
+#view-products .productBtns button{
+    width: 100px;
+    margin: 10px;
+}
+#view-products .productBtns .editBtn{
+    background: rgb(206, 151, 22);
+}
+#view-products .productBtns .deleteBtn{
+    background: rgb(226, 124, 124);
+}

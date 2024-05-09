@@ -1,0 +1,102 @@
+#add-product{
+    background-image: url('../assets/pictures/back2.jpeg');
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-position: center;
+    width: 82%;
+    height:100vh;
+    position: absolute;
+    overflow-y: scroll;
+    left: 18%;
+    padding: 50px 0;
+    color: white;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+#add-product::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+#add-product {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+#add-product #add-product-form form{
+   margin: auto;
+   width: 90%;
+}
+
+#add-product h2{
+    color: rgb(206, 151, 22);
+    font-size: xx-large;
+    margin-bottom: 20px;
+ }
+ #add-product .row{
+    width: 100%;
+    margin-top: 20px;
+ }
+
+#add-product .row input,#add-product .row select {
+    width: 100%;
+    height: 40px;
+    background: black;
+    color: white;
+    padding: 10px;
+    font-size: large;
+    border-radius: 10px;
+}
+
+#add-product .row textarea {
+    width: 100%;
+    height: 80px;
+    background: black;
+    color: white;
+    padding: 10px;
+    font-size: large;
+    border-radius: 10px;
+}
+
+#add-product-form{
+    display: flex;
+    flex-direction: column;
+    color: white;
+    justify-content: center;
+    width: 50%;
+    margin: auto;
+    /* border: 3px solid black; */
+    border-radius: 20px;
+    background: black;
+    padding: 20px;
+}
+
+#add-product .row label{
+    display: block;
+    font-size: larger;
+    text-align: left;
+    width: 80%;
+}
+#add-product span{
+    color: red;
+    font-size: x-large;
+}
+#add-product p{
+    font-size: large;
+    text-align: left;
+    margin: 15px;
+}
+#add-product button{
+    font-size: x-large;
+    padding: 5px 20px;
+    margin: 20px;
+}
+#add-product .response{
+    text-align: center;
+}
+#add-product  #success{
+    color: green;
+}
+#add-product  #error{
+    color: red;
+}

@@ -43,6 +43,13 @@ const RegistrationForm = () => {
             }
             else {
                 setError('');
+                setFormData({
+                    names: '',
+                    email: '',
+                    status: 'ACTIVE',
+                    password: '',
+                    confirmPass: ''
+                });
                 setResponse(data);
             }
         } catch (error) {
