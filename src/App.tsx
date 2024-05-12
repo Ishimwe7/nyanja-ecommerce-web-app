@@ -6,9 +6,9 @@ import RegistrationForm from './components/registration';
 import LoginForm from './components/loginForm';
 import Home from './components/home';
 import AdminDashoard from './components/adminDashboard';
+import JewelleriesProducts from './components/Jewelleries';
 function App() {
   //const [count, setCount] = useState(0)
-
   return (
     <Router>
       <Routes>
@@ -16,6 +16,7 @@ function App() {
         <Route path="/login" element={<LoginForm />} />
         <Route path="/register" element={<RegistrationForm />} />
         <Route path="/adminDashboard" element={<AdminDashoard />} />
+        <Route path="/jewelleries" element={<JewelleriesProducts />} />
       </Routes>
     </Router>
   )

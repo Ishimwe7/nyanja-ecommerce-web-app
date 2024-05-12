@@ -5,9 +5,19 @@ import { Link } from 'react-router-dom';
 //import Products from './products_categories';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUtensils, faShoePrints, faLaptop, faGem, faTShirt, faSignInAlt, faUserPlus } from '@fortawesome/free-solid-svg-icons';
-const Header = () => {
+
+interface HeaderProps {
+    onSelectCategory: (category: string) => void;
+}
+const Header = ({ onSelectCategory }: HeaderProps) => {
     const [showComponent, setShowComponent] = useState(false);
     const timeoutRef = useRef(0);
+
+    const handleCategorySelect = (category: string, event: React.MouseEvent<HTMLLIElement>) => {
+        event.preventDefault();
+        onSelectCategory(category);
+        console.log(category + " Clicked")
+    };
 
     const handleMouseEnter = () => {
         //setShowComponent(true);
@@ -39,11 +49,11 @@ const Header = () => {
         </ul>
         {showComponent &&
             <ul id="products_categories">
-                <li><a href=""><FontAwesomeIcon className='icons' icon={faUtensils} /> Food & Beverages</a></li>
+                <li onClick={(e) => handleCategorySelect('Food_Beverages', e)}><a href=""><FontAwesomeIcon className='icons' icon={faUtensils} /> Food & Beverages</a></li>
                 <li><a href=""> <FontAwesomeIcon className='icons' icon={faShoePrints} /> Shoes</a></li>
-                <li><a href=""> <FontAwesomeIcon className='icons' icon={faTShirt} /> Clothes</a></li>
+                <li onClick={(e) => handleCategorySelect('Clothes', e)}><a href=""> <FontAwesomeIcon className='icons' icon={faTShirt} /> Clothes</a></li>
                 <li><a href=""><FontAwesomeIcon className='icons' icon={faLaptop} /> Electronics</a></li>
-                <li><a href=""><FontAwesomeIcon className='icons' icon={faGem} />Jewerillies</a></li>
+                <li onClick={(e) => handleCategorySelect('JewelleriesProducts', e)}><a href=""><FontAwesomeIcon className='icons' icon={faGem} />Jewerillies</a></li>
             </ul>
         }
     </div>

@@ -99,11 +99,11 @@ const AddProduct = () => {
                     <label htmlFor="category">Product Category <span>*</span></label>
                     <select name="category" id="category" value={formData.category} onChange={handleChange} required>
                         <option value='' disabled >Please select product category</option>
-                        <option value="food_beverages">Food & Beverages</option>
-                        <option value="shoes">Shoes</option>
-                        <option value="clothes">Clothes</option>
-                        <option value="electronics">Electronics</option>
-                        <option value="jewelleries">Jewelleries</option>
+                        <option value="Food & Beverages">Food & Beverages</option>
+                        <option value="Shoes">Shoes</option>
+                        <option value="Clothes">Clothes</option>
+                        <option value="Electronics">Electronics</option>
+                        <option value="Jewelleries">Jewelleries</option>
                     </select>
                 </div>
                 <div className='row'>
