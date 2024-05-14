@@ -52,13 +52,27 @@
    color: rgb(206, 151, 22);
    font-size: xx-large;
 }
-#reg-form .row, #sign-in .row{
+#reg-form .row, #sign-in .row, #sign-in .isAdmin{
     margin: 5px;
     text-align: left;
 }
+
 #reg-form .row label, #sign-in .row label{
     display: block;
     font-size: larger;
+}
+#sign-in .isAdmin label{
+    font-size: larger;
+}
+#sign-in .isAdmin input{
+    width: 25px;
+    height: 25px;
+    margin-left: 20px;
+}
+#sign-in .isAdmin{
+    display: flex;
+    align-items: center;
+    margin: 20px;
 }
 #reg-form .row input,#sign-n .row input {
     width: 100%;

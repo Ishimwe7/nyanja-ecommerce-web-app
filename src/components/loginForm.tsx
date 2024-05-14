@@ -12,6 +12,7 @@ const LoginForm = () => {
     const [formData, setFormData] = useState({
         email: '',
         password: '',
+        isAdmin: false
     });
     const [error, setError] = useState('');
 
@@ -36,7 +37,12 @@ const LoginForm = () => {
             const data = await response.text();
             if (response.ok) {
                 setError('');
-                navigate('/');
+                if(formData.isAdmin){
+                    navigate('/adminDashboard');
+                }
+                else{
+                    navigate('/');
+                }
             }
             else {
                 setError(data);
@@ -62,6 +68,10 @@ const LoginForm = () => {
                 <div className='row'>
                     <label htmlFor="password">Password</label>
                     <input id='password' name='password' value={formData.password} onChange={handleChange} placeholder='Type your password here' type="password" />
+                </div>
+                <div className='isAdmin'>
+                    <label htmlFor="isAdmin">Admin</label>
+                    <input id='isAdmin' name='isAdmin' checked={formData.isAdmin} onChange={handleChange} type="checkbox" />
                 </div>
                 <p className='response' id='error'>{error}</p>
                 <button type='submit'>Login</button>

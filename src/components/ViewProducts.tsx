@@ -8,7 +8,8 @@ interface Product {
     description: string;
     price: number;
     quantity: number;
-    category: string
+    category: string;
+    imagePath: string;
 }
 
 // const ViewProducts: React.FC = () => {
@@ -161,7 +162,6 @@ const ViewProducts: React.FC = () => {
         groupedProducts[product.category].push(product);
     });
 
-
     return (
         <div id="view-products">
             <h1>All products in the stock</h1>
@@ -173,6 +173,9 @@ const ViewProducts: React.FC = () => {
                     <div className="products-list">
                         {groupedProducts[category].map(product => (
                             <div key={product.id} className="product">
+                             {product.imagePath && (
+                        <img className='product-img' src={`http://localhost:8080/products/images/${product.imagePath}`} alt={product.imagePath} />
+                    )}
                                 <h4>{product.name}</h4>
                                 <p>{product.description}</p>
                                 <p>Price: {product.price} $</p>
