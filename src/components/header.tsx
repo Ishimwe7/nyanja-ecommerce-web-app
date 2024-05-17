@@ -4,7 +4,7 @@ import { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 //import Products from './products_categories';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUtensils, faShoePrints, faLaptop, faGem, faTShirt, faSignInAlt, faUserPlus } from '@fortawesome/free-solid-svg-icons';
+import { faUtensils, faShoePrints, faLaptop, faGem, faTShirt, faSignInAlt, faSignOutAlt,faUserPlus } from '@fortawesome/free-solid-svg-icons';
 
 interface HeaderProps {
     onSelectCategory: (category: string) => void;
@@ -19,11 +19,19 @@ const Header = ({ onSelectCategory }: HeaderProps) => {
         console.log(category + " Clicked")
     };
 
+    const logout=(event: React.MouseEvent<HTMLLIElement>)=>{
+        event.preventDefault();
+        sessionStorage.removeItem('loggedUser');
+        location.reload();
+    }
+
     const handleMouseEnter = () => {
         //setShowComponent(true);
         clearTimeout(timeoutRef.current);
         setShowComponent(true);
     };
+
+    const loggedUser = sessionStorage.getItem('loggedUser');
 
     const handleMouseLeave = () => {
         //setShowComponent(false);
@@ -31,8 +39,14 @@ const Header = ({ onSelectCategory }: HeaderProps) => {
             setShowComponent(false);
         }, 5000);
     };
+    let user = null;
+    if(loggedUser){
+        user = JSON.parse(loggedUser);
+    }
     // console.log(showComponent)
-    return <div id="header">
+    return <div id="menu">
+        {user && <div id='user-details'><p id='user-names'>You're {user.names}</p></div>}
+        <div id='header'>
         <div id="logo">
             <img src={logo} alt="logo image" />
         </div>
@@ -41,18 +55,29 @@ const Header = ({ onSelectCategory }: HeaderProps) => {
             <li className='normal-links'>About Us</li>
             <li className='normal-links' onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>Products</li>
             <li className='normal-links'>Contact Us</li>
-            <div id='sign'>
+            {!loggedUser && <div id='sign'>
                 <li id='register'><Link className='links' to="/register">Register</Link><FontAwesomeIcon className='icons' icon={faUserPlus} /></li>
                 {/* <li id='register'>Register<FontAwesomeIcon className='icons' icon={faUserPlus} /></li> */}
                 <li id='login'><Link className='log-links' to="/login">Login</Link><FontAwesomeIcon className='icons' icon={faSignInAlt} /></li>
+            </div>}
+            {loggedUser && <>
+            <div id='cart-orders'>
+            <li id='cart'><Link className='cart' to="/register">In Cart</Link><FontAwesomeIcon className='icons' icon={faUserPlus} /></li>
+            {/* <li id='register'>Register<FontAwesomeIcon className='icons' icon={faUserPlus} /></li> */}
+            <li id='orders'><Link className='orders' to="/login">My Orders</Link><FontAwesomeIcon className='icons' icon={faSignInAlt} /></li>
+        </div>
+             <div id='sign-out'>
+                <li onClick={(event) => logout(event)} id='login'>Logout <FontAwesomeIcon className='icons' icon={faSignOutAlt} /></li>
             </div>
+            </>}
         </ul>
+        </div>
         {showComponent &&
             <ul id="products_categories">
-                <li onClick={(e) => handleCategorySelect('Food_Beverages', e)}><a href=""><FontAwesomeIcon className='icons' icon={faUtensils} /> Food & Beverages</a></li>
-                <li><a href=""> <FontAwesomeIcon className='icons' icon={faShoePrints} /> Shoes</a></li>
+                <li onClick={(e) => handleCategorySelect('Food_BeveragesProducts', e)}><a href=""><FontAwesomeIcon className='icons' icon={faUtensils} /> Food & Beverages</a></li>
+                <li onClick={(e) => handleCategorySelect('ShoesProducts', e)}><a href=""> <FontAwesomeIcon className='icons' icon={faShoePrints} /> Shoes</a></li>
                 <li onClick={(e) => handleCategorySelect('Clothes', e)}><a href=""> <FontAwesomeIcon className='icons' icon={faTShirt} /> Clothes</a></li>
-                <li><a href=""><FontAwesomeIcon className='icons' icon={faLaptop} /> Electronics</a></li>
+                <li onClick={(e) => handleCategorySelect('ElectronicsProducts', e)}><a href=""><FontAwesomeIcon className='icons' icon={faLaptop} /> Electronics</a></li>
                 <li onClick={(e) => handleCategorySelect('JewelleriesProducts', e)}><a href=""><FontAwesomeIcon className='icons' icon={faGem} />Jewerillies</a></li>
             </ul>
         }

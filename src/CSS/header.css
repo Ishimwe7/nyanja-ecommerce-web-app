@@ -4,31 +4,29 @@
     box-sizing: border-box;
 }
 
-/* #menu{
-    position: fixed;
-    top: 0;
-    width: 100%;
-    padding: 20px 0;
-    z-index: 1000;
+ #menu{
+     position: fixed;
+     top: 0;
+     width: 100%;
+     background: rgb(29, 28, 28);
+     display: flex;
+     flex-direction: column;
+} 
+#menu #user-details{
     display: flex;
-    justify-content: space-between;
-    gap: 35%; 
-     align-items: center; 
-     position: absolute; 
-     background: black; 
-} */
-
+    justify-content: right;
+    margin: 10px 30px 0 0;
+    font-size: x-large;
+}
+#menu #user-names{
+    color: rgb(206, 151, 22);
+}
 #header{
     display: flex;
-    justify-content:flex-start;
+    justify-content:space-between;
     align-items: center;
     margin: 0;
     padding: 0 20px;
-    gap:40%;  
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background: rgb(29, 28, 28);
 }
 #logo img{
     width: 60px;
@@ -40,6 +38,7 @@ ul#nav-links{
     /* gap: 0%; */
     float: right;
     list-style: none;
+    align-items: center;
 }
 ul#nav-links li{
     width: fit-content;
@@ -62,7 +61,7 @@ ul#nav-links .normal-links:hover{
     margin: auto;
     border-radius: 10px;
     position: absolute;
-    top: 80px;
+    top: 100px;
     right: 300px;
     /* display: none; */
 }
@@ -87,7 +86,7 @@ ul#nav-links #login{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100px;
+    width: 130px;
 }
 ul#nav-links #register{
     background: rgb(206, 151, 22);
@@ -111,6 +110,19 @@ ul#nav-links #register a:hover,ul#nav-links #login a:hover{
    height: fit-content;
    margin-left: 30px;
 }
+#sign-out{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   background: white;
+   border-radius: 20px;
+   height: fit-content;
+   margin-left: 30px;
+   padding: 0 15px;
+}
+#sign-out:hover{
+    cursor: pointer;
+}
 #sign .links{
     color: white;
 }
@@ -124,4 +136,19 @@ ul#nav-links #register a:hover,ul#nav-links #login a:hover{
 }
 #register .icons{
     color: black;
+}
+#cart-orders{
+    display: flex;
+    gap: 20px;
+    margin-left: 20px;
+    color: white;
+    width: fit-content;
+}
+#cart, #orders{
+    display: flex;
+}
+ul#nav-links #cart-orders li{
+    color: white;
+    width: 130px;
+    display: block;
 }

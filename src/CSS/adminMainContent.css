@@ -8,8 +8,13 @@
     position: absolute;
     overflow-y: scroll;
     left: 18%;
-    padding: 50px 0;
+    padding: 100px;
     color: white;
+}
+
+#admin-main-content h1{
+    color: rgb(206, 151, 22);
+    font-size: xx-large;
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */

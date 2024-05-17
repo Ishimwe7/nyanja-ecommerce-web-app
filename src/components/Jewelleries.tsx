@@ -9,7 +9,8 @@ interface Product {
     description: string;
     price: number;
     quantity: number;
-    category: string
+    category: string;
+    imagePath:string
 }
 
 const JewelleriesProducts: React.FC = () => {
@@ -48,24 +49,24 @@ const JewelleriesProducts: React.FC = () => {
 
 
     return (
-        <>
-            {/* <Header /> */}
             <div id="category-products">
                 <h1>Jewelleries Store</h1>
-                {products.length === 0 && <p className='no-products'>No Products in Jewelleries Store</p>}
+                {jewelleriesProducts.length === 0 && <p className='no-products'>No Products in Jewelleries Store</p>}
                 <div className="products-list">
                     {jewelleriesProducts.map(product => (
                         <div key={product.id} className="product">
+                                {product.imagePath && (
+                        <img className='product-img' src={`http://localhost:8080/products/images/${product.imagePath}`} alt={product.imagePath} />
+                    )}
                             <h4>{product.name}</h4>
                             <p>{product.description}</p>
                             <p>Price: {product.price} $</p>
                             <p>Quantity: {product.quantity} items</p>
+                            <button id='addCart'>Add Cart</button>
                         </div>
                     ))}
                 </div>
             </div>
-            {/* <Footer /> */}
-        </>
     );
 }
 

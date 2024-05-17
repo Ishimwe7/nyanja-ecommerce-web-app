@@ -38,7 +38,7 @@
 #view-products .product{
     background-color: black;
     width: calc(30% - 20px);
-    height: 200px;
+    height: auto;
     margin: 20px auto;
     border-radius: 10px;
     padding: 10px;
@@ -50,6 +50,11 @@
 }
 #view-products .productBtns .editBtn{
     background: rgb(206, 151, 22);
+}
+#view-products h1{
+    color: rgb(206, 151, 22);
+    font-size: xx-large;
+    margin-bottom: 30px;
 }
 #view-products .productBtns .deleteBtn{
     background: rgb(226, 124, 124);

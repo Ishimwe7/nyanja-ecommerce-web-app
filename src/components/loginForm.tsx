@@ -33,19 +33,25 @@ const LoginForm = () => {
                 },
                 body: JSON.stringify(formData)
             });
-            console.log(formData)
-            const data = await response.text();
-            if (response.ok) {
+            //console.log(formData)
+            const data = await response.json();
+            if (data) {
                 setError('');
                 if(formData.isAdmin){
-                    navigate('/adminDashboard');
+                    if (data.admin) { 
+                        navigate('/adminDashboard');
+                    } else {
+                        // console.log(data)
+                        setError('Invalid Credentials !');
+                    }
                 }
                 else{
+                    sessionStorage.setItem('loggedUser',JSON.stringify(data))
                     navigate('/');
                 }
             }
             else {
-                setError(data);
+                setError('Invalid Credentials !');
             }
         } catch (error) {
             console.error('Error:', error);

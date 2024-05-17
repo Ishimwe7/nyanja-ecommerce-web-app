@@ -11,6 +11,7 @@ import ViewOrders from './ViewOrders';
 //import SalesReport from './SalesReport';
 import '../CSS/adminDash.css'
 import { useState } from 'react';
+import MainDashContent from './mainDashContent';
 const AdminDashoard = () => {
 
     const [showAdd, setShowAddProduct] = useState(false);
@@ -57,6 +58,7 @@ const AdminDashoard = () => {
             {showAdd && <AddProduct />}
             {showProducts && <ViewProducts />}
             {showOrders && <ViewOrders />}
+            {!showAdd && !showProducts && !showOrders && <MainDashContent/>}
         </div>
     );
 }
