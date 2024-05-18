@@ -17,12 +17,13 @@
     background-repeat: no-repeat;
     background-size:cover;
     background-position: center;
-    height: 500px;
+    height: fit-content;
+    min-height: 500px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 0;
-    margin: auto;
+    margin: 100px auto 0 auto;
   }
   #welcome-div h1{
     font-size: xx-large;

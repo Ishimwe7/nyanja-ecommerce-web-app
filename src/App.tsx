@@ -7,6 +7,8 @@ import LoginForm from './components/loginForm';
 import Home from './components/home';
 import AdminDashoard from './components/adminDashboard';
 import JewelleriesProducts from './components/Jewelleries';
+// import Cart from './components/Cart';
+// import Orders from './components/Orders';
 function App() {
   //const [count, setCount] = useState(0)
   return (
@@ -17,6 +19,8 @@ function App() {
         <Route path="/register" element={<RegistrationForm />} />
         <Route path="/adminDashboard" element={<AdminDashoard />} />
         <Route path="/jewelleries" element={<JewelleriesProducts />} />
+        {/* <Route path="/cart" element={<Cart />} />
+        <Route path="/orders" element={<Orders />} />  */}
       </Routes>
     </Router>
   )

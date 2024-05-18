@@ -4,7 +4,8 @@ import { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 //import Products from './products_categories';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUtensils, faShoePrints, faLaptop, faGem, faTShirt, faSignInAlt, faSignOutAlt,faUserPlus } from '@fortawesome/free-solid-svg-icons';
+//import { FaShoppingCart, FaClipboardList } from 'react-icons/fa';
+import {faShoppingCart,  faClipboardList, faUtensils, faShoePrints, faLaptop, faGem, faTShirt, faSignInAlt, faSignOutAlt,faUserPlus } from '@fortawesome/free-solid-svg-icons';
 
 interface HeaderProps {
     onSelectCategory: (category: string) => void;
@@ -51,7 +52,7 @@ const Header = ({ onSelectCategory }: HeaderProps) => {
             <img src={logo} alt="logo image" />
         </div>
         <ul id="nav-links">
-            <li className='normal-links'>Home</li>
+            <li onClick={()=>{location.reload()}} className='normal-links'>Home</li>
             <li className='normal-links'>About Us</li>
             <li className='normal-links' onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>Products</li>
             <li className='normal-links'>Contact Us</li>
@@ -62,9 +63,9 @@ const Header = ({ onSelectCategory }: HeaderProps) => {
             </div>}
             {loggedUser && <>
             <div id='cart-orders'>
-            <li id='cart'><Link className='cart' to="/register">In Cart</Link><FontAwesomeIcon className='icons' icon={faUserPlus} /></li>
+            <li id='cart' onClick={(e) => handleCategorySelect('CartComponent', e)}>In Cart<FontAwesomeIcon className='icons' icon={faShoppingCart} /></li>
             {/* <li id='register'>Register<FontAwesomeIcon className='icons' icon={faUserPlus} /></li> */}
-            <li id='orders'><Link className='orders' to="/login">My Orders</Link><FontAwesomeIcon className='icons' icon={faSignInAlt} /></li>
+            <li id='orders'>My Orders<FontAwesomeIcon className='icons' icon={faClipboardList} /></li>
         </div>
              <div id='sign-out'>
                 <li onClick={(event) => logout(event)} id='login'>Logout <FontAwesomeIcon className='icons' icon={faSignOutAlt} /></li>

@@ -10,14 +10,32 @@ import ViewProducts from './ViewProducts';
 import ViewOrders from './ViewOrders';
 //import SalesReport from './SalesReport';
 import '../CSS/adminDash.css'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import MainDashContent from './mainDashContent';
 const AdminDashoard = () => {
 
+    const navigate = useNavigate();
+    const [loggedAdmin, setLoggedAdmin] = useState(false);
     const [showAdd, setShowAddProduct] = useState(false);
     const [showProducts, setShowProducts] = useState(false);
     const [showOrders, setShowOrders] = useState(false);
     //const [showSales, setShowSales] = useState(false);
+
+    // useEffect(() => {
+    //     const isAdminLoggedIn = sessionStorage.getItem('loggedAdmin');
+    //     isAdminLoggedIn ?  setLoggedAdmin(true) :  setLoggedAdmin(false)
+    //     // console.log(isAdminLoggedIn);
+    // }, [navigate]);
+
+    useEffect(() => {
+        const isAdminLoggedIn = sessionStorage.getItem('loggedAdmin');
+        isAdminLoggedIn ? setLoggedAdmin(true) : setLoggedAdmin(false);
+        if (!isAdminLoggedIn) {
+            navigate('/login');
+        }
+    }, [navigate, loggedAdmin]);
+
     const ShowAddProduct = () => {
         if (showAdd == false) {
             setShowOrders(false);
@@ -39,6 +57,14 @@ const AdminDashoard = () => {
             setShowOrders(true);
         }
     }
+
+    // if (!loggedAdmin) {
+    //     navigate('/login');
+    //     //return null; // Render nothing if admin is not logged in
+    // }
+    // if (!loggedAdmin) {
+    //     navigate('/login'); // Render nothing if admin is not logged in
+    // }
 
     return (
         <div id="admin-dashboard">

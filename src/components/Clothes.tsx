@@ -14,18 +14,18 @@ interface Product {
     category: string;
     imagePath: string
 }
-interface User {
-    id: number;
-    names: string;
-    email: string;
-    isAdmin: boolean;
-    status: string;
-    password:string
-}
-interface Cart {
-    user: User;
-    products: Product[];
-}
+// interface User {
+//     id: number;
+//     names: string;
+//     email: string;
+//     isAdmin: boolean;
+//     status: string;
+//     password:string
+// }
+// interface Cart {
+//     user: User;
+//     products: Product[];
+// }
 // interface CartProduct {
 //     id: number;
 //     name: string;
@@ -37,8 +37,8 @@ interface Cart {
 // }
 const Clothes: React.FC = () => {
 
-    const [add_response, setResponse] = useState('');
-    const [add_error, setError] = useState('');
+    // const [add_response, setResponse] = useState('');
+    // const [add_error, setError] = useState('');
     const [loginFirst, setLoginFirst] = useState('');
 
     const api_url = 'http://localhost:8080/api/products';
@@ -60,33 +60,30 @@ const Clothes: React.FC = () => {
         if(loggedUser){
             try {
                 const user = JSON.parse(loggedUser);
-                const cart: Cart = {
-                    user: user, 
-                    products: [product] 
-                };
-                const response = await fetch(cart_url + `/newCart/${user.id}`, {
+                // const cart: Cart = {
+                //     user: user, 
+                //     products: [product] 
+                // };
+                const response = await fetch(cart_url + `/editcart/${user.id}`, {
                     // method: 'POST',
                     // body: cart
-                    method: 'POST',
+                    method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json' 
                     },
-                    body: JSON.stringify(cart)
+                    body: JSON.stringify(product)
                 });
-                const data = await response.text();
-                if (data !== "Cart Added Successfully !") {
-                    setResponse('');
-                    setError(data);
-                    alert(add_error);
+                const data = await response.json();
+                console.log(data);
+                if (response.ok) {
+                   alert('Cart Item Added Successfully');
                 }
                 else {
-                    setError('');
-                    setResponse(data);
-                    alert(add_response);
+                    alert(data.message);
                 }
             } catch (error) {
                 console.error('Error:', error);
-                setError('An unexpected error occurred');
+                alert('An unexpected error occurred');
             }
         }
         else{

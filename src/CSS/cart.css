@@ -1,0 +1,108 @@
+#cart-items{
+    color: white;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: auto; 
+    border: 3px solid rgb(206, 151, 22);
+    border-radius: 15px;
+    overflow: scroll;
+    background-color: black;
+    position: relative;
+}
+
+#cart-items::-webkit-scrollbar{
+    display: none;
+}
+
+ .cart-res-message{
+    font-size: xx-large;
+    color: rgb(206, 151, 22);
+}
+.cart-res-message h1{
+    font-size: xx-large;
+}
+
+#cart-items .product{
+    background-color: black;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 1px solid white;
+    border-radius: 10px;
+    width: 80%;
+    height: 250px;
+    margin: 20px auto;
+    padding: 50px 20px;
+    position: relative;
+}
+
+#cart-items h2{
+    font-size: xx-large;
+    color: rgb(206, 151, 22);
+}
+#cart-items .items-count{
+    background-color: black;
+    border: 1px solid white;
+    border-radius: 10px;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    padding: 10px;
+}
+
+#cart-items .count{
+    color: rgb(206, 151, 22);
+    margin: 0 20px;
+    font-size: x-large;
+}
+#cart-items button.inc-dec{
+    padding: 0px 50px;
+    font-size: xx-large;
+    background-color: black;
+    color: white;
+    border: 1px solid white;
+}
+#cart-items .subtotal{
+    background-color: black;
+    border: 1px solid white;
+    width: 80%;
+    border-radius: 10px;
+    padding: 20px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+    text-align: center;
+}
+
+#cart-items #grand-total-check{
+    background-color: black;
+    margin: 20px auto;
+    border: 1px solid white;
+    border-radius: 20px;
+    width: 80%;
+    height: 100px;
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    font-size: small;
+}
+#cart-items #grand-total-check h2{
+    font-size: x-large;
+}
+#cart-items .deleteCartItem{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+#cart-items .deleteCartItem:hover{
+    cursor: pointer;
+}

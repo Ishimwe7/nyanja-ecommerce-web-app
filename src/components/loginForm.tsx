@@ -35,10 +35,11 @@ const LoginForm = () => {
             });
             //console.log(formData)
             const data = await response.json();
-            if (data) {
+            if (response.ok) {
                 setError('');
                 if(formData.isAdmin){
                     if (data.admin) { 
+                        sessionStorage.setItem('loggedAdmin',JSON.stringify(data))
                         navigate('/adminDashboard');
                     } else {
                         // console.log(data)
