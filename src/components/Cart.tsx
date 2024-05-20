@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import '../CSS/cart.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 //import { FaShoppingCart, FaClipboardList } from 'react-icons/fa';
-import {faShoppingCart,faTrash } from '@fortawesome/free-solid-svg-icons';
-
+import {faShoppingCart,faTrash,faCheckCircle } from '@fortawesome/free-solid-svg-icons';
+import Orders from './Orders';
+import { ChangeEvent } from 'react';
 
 interface Product {
   id: number;
@@ -17,6 +18,26 @@ interface Cart {
   products: Product[];
 }
 
+interface User{
+  id:number;
+  email:string;
+  phoneNumber:string;
+  isAdmin:boolean;
+  status:string;
+  password:string;
+}
+
+interface Orders {
+  customer: User;
+  orderdate:Date;
+  status:string;
+  totalPrice:number;
+  paymentMethod:string;
+  deliveryAddress:string;
+  deliveryPhoneNumber:string;
+  products: Product[];
+}
+
 // interface CartProps {
 //   userId: number;
 // }
@@ -25,6 +46,7 @@ interface Cart {
 const CartComponent: React.FC = () => {
 
   const cart_url = 'http://localhost:8080/api/cart';
+  const orders_url = 'http://localhost:8080/api/orders';
     let userId: number | null = null;
     const loggedUser = sessionStorage.getItem('loggedUser');
     if(loggedUser){
@@ -36,6 +58,16 @@ const CartComponent: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [quantity, setQuantity] = useState<number[]>([]);
   const [grandTotal, setGrandTotal] = useState<number>(0);
+  const [order,setOrder] = useState({
+    customer: loggedUser,
+    orderdate:Date.now(),
+    status:'PENDING',
+    totalPrice:grandTotal,
+    paymentMethod:'',
+    deliveryAddress:'',
+    deliveryPhoneNumber:'',
+    products: cart?.products
+});
 
   const calculateSubtotal =(price:number,quantity:number)=>{
     return price * quantity;
@@ -61,6 +93,35 @@ const CartComponent: React.FC = () => {
     setQuantity(newQuantities);
   };
 
+  const handleOrderDetailsChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setOrder({
+        ...order,
+        [name]: value
+    });
+};
+  const placeOrder = async(order:Orders, event:React.MouseEvent<HTMLButtonElement>)=>{
+    event.preventDefault();
+    try{
+      const response = await fetch(orders_url+'/placeOrder',{
+        method: 'POST',
+                  headers: {
+                      'Content-Type': 'application/json' 
+                  },
+                  body: JSON.stringify(order)
+      })
+      const data = await response.json();
+      if (response.ok) {
+        alert('Order Placed Successfully');
+        console.log(data);
+     }
+     else {
+         alert(data.message);
+     }
+    }catch(erorr){
+      console.log(erorr);
+    }
+  }
 
   const deleteCartItem = async(productId: number,event:React.MouseEvent<HTMLSpanElement> ) => {
     event.preventDefault();
@@ -97,6 +158,14 @@ const CartComponent: React.FC = () => {
         alert('Login First to add items to cart !')   
    }
   };
+
+  const showConfirmationForm=(event:React.MouseEvent<HTMLButtonElement>)=>{
+    event.preventDefault();
+    const confirmationForm = document.getElementById('confirmation-form');
+    if(confirmationForm){
+      confirmationForm.style.display='block';
+    }
+  }
 
   useEffect(() => {
     if (cart) {
@@ -201,7 +270,29 @@ const CartComponent: React.FC = () => {
         ))}
         <div id='grand-total-check'>
           <h2>Grand Total: $<span>{grandTotal}</span></h2>
-          <button>PROCEED TO CHECKOUT<FontAwesomeIcon className='icons' icon={faShoppingCart}/></button>
+          <button onClick={(e)=>{showConfirmationForm(e)}}>PLACE ORDER <FontAwesomeIcon className='icons' icon={faShoppingCart}/></button>
+        </div>
+        <div id='confirmation-form'>
+          <h3>Fill Out Required Information To Confirm Order</h3>
+         <div className="inputs">
+         <div className='row'>
+            <label htmlFor="payment-methods">Please Choose Payment Method :</label>
+            <select id='payment-methods' name='paymentMethod' value={order.paymentMethod} onChange={handleOrderDetailsChange}>
+              <option value="Cash">Cash On Delivery</option>
+              <option value="Credit/Debit Card ">Credit/Debit Card</option>
+              <option value="Bank Transfer">Bank Transfer</option>
+            </select>
+          </div>
+          <div className="row">
+            <label htmlFor="delivery-contact">Delivery Contact number :</label>
+            <input type="text" name="deliveryPhoneNumber" id="delivery-contact" value={order.deliveryPhoneNumber} />
+          </div>
+          <div className="row">
+            <label htmlFor="delivery-address">Delivery Address :</label>
+            <input type="text" name="deliveryAddress" id="delivery-address" value={order.deliveryAddress} onChange={handleOrderDetailsChange} />
+          </div>
+         </div>
+         <button onClick={(e)=>{placeOrder(order,e)}}><FontAwesomeIcon className='confirm-order-icon' icon={faCheckCircle} />CONFIRM ORDER</button>
         </div>
       </div>
     </div>

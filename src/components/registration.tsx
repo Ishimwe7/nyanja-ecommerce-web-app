@@ -11,6 +11,7 @@ const RegistrationForm = () => {
     const [formData, setFormData] = useState({
         names: '',
         email: '',
+        phoneNumber:'',
         status: 'ACTIVE',
         password: '',
         confirmPass: ''
@@ -46,6 +47,7 @@ const RegistrationForm = () => {
                 setFormData({
                     names: '',
                     email: '',
+                    phoneNumber:'',
                     status: 'ACTIVE',
                     password: '',
                     confirmPass: ''
@@ -74,6 +76,10 @@ const RegistrationForm = () => {
                 <div className='row'>
                     <label htmlFor="email">Email</label>
                     <input id='email' name='email' value={formData.email} onChange={handleChange} placeholder='Enter your email' type="email" />
+                </div>
+                <div className='row'>
+                    <label htmlFor="phoneNumber">Phone number</label>
+                    <input id='phoneNumber' name='phoneNumber' value={formData.phoneNumber} onChange={handleChange} placeholder='Enter your phone number' type="text" />
                 </div>
                 <div className='row'>
                     <label htmlFor="password">Password</label>
