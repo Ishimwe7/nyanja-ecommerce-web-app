@@ -3,7 +3,7 @@ import '../CSS/cart.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 //import { FaShoppingCart, FaClipboardList } from 'react-icons/fa';
 import {faShoppingCart,faTrash,faCheckCircle } from '@fortawesome/free-solid-svg-icons';
-import Orders from './Orders';
+//import Orders from './Orders';
 import { ChangeEvent } from 'react';
 
 interface Product {
@@ -27,16 +27,16 @@ interface User{
   password:string;
 }
 
-interface Orders {
-  customer: User;
-  orderdate:Date;
-  status:string;
-  totalPrice:number;
-  paymentMethod:string;
-  deliveryAddress:string;
-  deliveryPhoneNumber:string;
-  products: Product[];
-}
+// interface Orders {
+//   customer: User;
+//   orderdate:Date;
+//   status:string;
+//   totalPrice:number;
+//   paymentMethod:string;
+//   deliveryAddress:string;
+//   deliveryPhoneNumber:string;
+//   products: Product[];
+// }
 
 // interface CartProps {
 //   userId: number;
@@ -48,26 +48,47 @@ const CartComponent: React.FC = () => {
   const cart_url = 'http://localhost:8080/api/cart';
   const orders_url = 'http://localhost:8080/api/orders';
     let userId: number | null = null;
+    let user: User | null = null;
     const loggedUser = sessionStorage.getItem('loggedUser');
     if(loggedUser){
-        const user = JSON.parse(loggedUser);
-        userId = user.id;
+        user = JSON.parse(loggedUser);
+        if(user){
+          userId = user.id;
+        }
     }
   const [cart, setCart] = useState<Cart | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [quantity, setQuantity] = useState<number[]>([]);
   const [grandTotal, setGrandTotal] = useState<number>(0);
-  const [order,setOrder] = useState({
-    customer: loggedUser,
-    orderdate:Date.now(),
-    status:'PENDING',
-    totalPrice:grandTotal,
-    paymentMethod:'',
-    deliveryAddress:'',
-    deliveryPhoneNumber:'',
-    products: cart?.products
+  const [order, setOrder] = useState<{
+  customer: User | null;
+  status: string;
+  totalPrice: number;
+  paymentMethod: string;
+  deliveryAddress: string;
+  deliveryPhoneNumber: string;
+  products: Product[] | undefined;
+}>({
+  customer: user,
+  status: 'PENDING',
+  totalPrice: grandTotal,
+  paymentMethod: '',
+  deliveryAddress: '',
+  deliveryPhoneNumber: '',
+  products: cart?.products,
 });
+
+//   const [order,setOrder] = useState({
+//     customer: user,
+//     orderdate:Date.now(),
+//     status:'PENDING',
+//     totalPrice:grandTotal,
+//     paymentMethod:'',
+//     deliveryAddress:'',
+//     deliveryPhoneNumber:'',
+//     products: cart?.products
+// });
 
   const calculateSubtotal =(price:number,quantity:number)=>{
     return price * quantity;
@@ -100,9 +121,10 @@ const CartComponent: React.FC = () => {
         [name]: value
     });
 };
-  const placeOrder = async(order:Orders, event:React.MouseEvent<HTMLButtonElement>)=>{
+  const placeOrder = async(event:React.FormEvent)=>{
     event.preventDefault();
-    try{
+    if(user){
+      try{
       const response = await fetch(orders_url+'/placeOrder',{
         method: 'POST',
                   headers: {
@@ -121,6 +143,10 @@ const CartComponent: React.FC = () => {
     }catch(erorr){
       console.log(erorr);
     }
+    }
+    else{
+      alert('Please login first to place order');
+    }
   }
 
   const deleteCartItem = async(productId: number,event:React.MouseEvent<HTMLSpanElement> ) => {
@@ -137,7 +163,7 @@ const CartComponent: React.FC = () => {
                 body: JSON.stringify(cart)
             });
             const data = await response.json();
-            console.log(data);
+           // console.log(data);
             if (response.ok) {
                alert('Cart Item deleted Successfully');
                const updatedCart = {
@@ -213,7 +239,7 @@ const CartComponent: React.FC = () => {
         if(response.ok){
           const cartData = await response.json();
           setCart(cartData);
-          console.log(cartData);
+         // console.log(cartData);
           setLoading(false);
         }
       } catch (error) {
@@ -225,6 +251,15 @@ const CartComponent: React.FC = () => {
 
     fetchCart();
   },[userId]);
+
+  useEffect(() => {
+    // Update the order state whenever cart or grandTotal changes
+    setOrder((prevOrder) => ({
+      ...prevOrder,
+      totalPrice: grandTotal,
+      products: cart?.products,
+    }));
+  }, [cart, grandTotal]);
 
   if (loading) {
     return <div className='cart-res-message'>Please wait while We're Loading your Cart....</div>;
@@ -274,10 +309,11 @@ const CartComponent: React.FC = () => {
         </div>
         <div id='confirmation-form'>
           <h3>Fill Out Required Information To Confirm Order</h3>
+          <form onSubmit={(e)=>{placeOrder(e)}}>
          <div className="inputs">
          <div className='row'>
             <label htmlFor="payment-methods">Please Choose Payment Method :</label>
-            <select id='payment-methods' name='paymentMethod' value={order.paymentMethod} onChange={handleOrderDetailsChange}>
+            <select id='payment-methods' name='paymentMethod' required value={order.paymentMethod} onChange={handleOrderDetailsChange}>
               <option value="Cash">Cash On Delivery</option>
               <option value="Credit/Debit Card ">Credit/Debit Card</option>
               <option value="Bank Transfer">Bank Transfer</option>
@@ -285,14 +321,15 @@ const CartComponent: React.FC = () => {
           </div>
           <div className="row">
             <label htmlFor="delivery-contact">Delivery Contact number :</label>
-            <input type="text" name="deliveryPhoneNumber" id="delivery-contact" value={order.deliveryPhoneNumber} />
+            <input type="text" name="deliveryPhoneNumber" id="delivery-contact" required value={order.deliveryPhoneNumber} onChange={handleOrderDetailsChange} />
           </div>
           <div className="row">
             <label htmlFor="delivery-address">Delivery Address :</label>
-            <input type="text" name="deliveryAddress" id="delivery-address" value={order.deliveryAddress} onChange={handleOrderDetailsChange} />
+            <input type="text" name="deliveryAddress" id="delivery-address" required value={order.deliveryAddress} onChange={handleOrderDetailsChange} />
           </div>
          </div>
-         <button onClick={(e)=>{placeOrder(order,e)}}><FontAwesomeIcon className='confirm-order-icon' icon={faCheckCircle} />CONFIRM ORDER</button>
+         <button type='submit'><FontAwesomeIcon className='confirm-order-icon' icon={faCheckCircle} />CONFIRM ORDER</button>
+      </form>
         </div>
       </div>
     </div>

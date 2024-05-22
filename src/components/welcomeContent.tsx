@@ -7,12 +7,13 @@ import ShoesProducts from './Shoes';
 import ElectronicsProducts from './Electronics';
 import Clothes from './Clothes';
 import CartComponent from './Cart';
+import Orders from './Orders';
 
 interface HomeProps {
     SelectedCategory: string;
 }
 // type CategoryComponentProps = JewelleriesProducts | ClothesProps;
-type CategoryComponentProps = React.ComponentProps<typeof JewelleriesProducts> | React.ComponentProps<typeof Clothes> | React.ComponentProps<typeof CartComponent>;
+type CategoryComponentProps = React.ComponentProps<typeof JewelleriesProducts> | React.ComponentProps<typeof Clothes> | React.ComponentProps<typeof CartComponent> | React.ComponentProps<typeof Orders>;
 
 const WelcomeContent = ({ SelectedCategory }: HomeProps) => {
     // console.log("SelectedCategory:", SelectedCategory);
@@ -23,7 +24,8 @@ const WelcomeContent = ({ SelectedCategory }: HomeProps) => {
         ElectronicsProducts,
         ShoesProducts,
         Food_BeveragesProducts,
-        CartComponent
+        CartComponent,
+        Orders
     };
     const SelectedComponent = categoryComponents[SelectedCategory];
     

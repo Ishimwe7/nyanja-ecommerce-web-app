@@ -65,7 +65,7 @@ const Header = ({ onSelectCategory }: HeaderProps) => {
             <div id='cart-orders'>
             <li id='cart' onClick={(e) => handleCategorySelect('CartComponent', e)}>In Cart<FontAwesomeIcon className='icons' icon={faShoppingCart} /></li>
             {/* <li id='register'>Register<FontAwesomeIcon className='icons' icon={faUserPlus} /></li> */}
-            <li id='orders'>My Orders<FontAwesomeIcon className='icons' icon={faClipboardList} /></li>
+            <li id='orders' onClick={(e) => handleCategorySelect('Orders', e)}>My Orders<FontAwesomeIcon className='icons' icon={faClipboardList} /></li>
         </div>
              <div id='sign-out'>
                 <li onClick={(event) => logout(event)} id='login'>Logout <FontAwesomeIcon className='icons' icon={faSignOutAlt} /></li>
