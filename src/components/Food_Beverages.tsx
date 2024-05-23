@@ -56,7 +56,7 @@ const Food_BeveragesProducts: React.FC = () => {
                     {Food_BeveragesProducts.map(product => (
                         <div key={product.id} className="product">
                                 {product.imagePath && (
-                        <img className='product-img' src={`http://localhost:8080/products/images/${product.imagePath}`} alt={product.imagePath} />
+                        <img className='product-img' src={product.imagePath} alt='Product Image' />
                     )}
                             <h4>{product.name}</h4>
                             <p>{product.description}</p>

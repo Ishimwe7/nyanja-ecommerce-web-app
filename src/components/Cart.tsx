@@ -11,6 +11,7 @@ interface Product {
   name: string;
   price: number;
   quantity: number;
+  tempQty:number;
 }
 
 interface Cart {
@@ -108,10 +109,11 @@ const CartComponent: React.FC = () => {
   //   }
   // }
 
-  const updateQuantity = (index: number, newQuantity: number) => {
+  const updateQuantity = (product:Product,index: number, newQuantity: number) => {
     const newQuantities = [...quantity];
     newQuantities[index] = newQuantity;
     setQuantity(newQuantities);
+    product.tempQty=newQuantity
   };
 
   const handleOrderDetailsChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -288,11 +290,13 @@ const CartComponent: React.FC = () => {
             <div className='items-count'>
               <button className='inc-dec' onClick={() => {
                   updateQuantity(
+                    product,
                     index,
                     Math.max(quantity[index] - 1, 1)
                   );
                 }}>-</button><span className='count'>{quantity[index]} item(s)</span><button className='inc-dec' onClick={() => {
                   updateQuantity(
+                    product,
                     index,
                     Math.min(quantity[index] + 1, product.quantity)
                   );

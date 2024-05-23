@@ -168,19 +168,18 @@ const ViewProducts: React.FC = () => {
             {products.length === 0 && <p className='no-products'>No Products in the stock</p>}
             {/* Render products by category */}
             {Object.keys(groupedProducts).map(category => (
-                <div key={category}>
+                <div className='products-category' key={category}>
                     <h2 className='categoryHeading'>{category}</h2>
                     <div className="products-list">
                         {groupedProducts[category].map(product => (
                             <div key={product.id} className="product">
                              {product.imagePath && (
-                        <img className='product-img' src={`http://localhost:8080/products/images/${product.imagePath}`} alt={product.imagePath} />
+                        <img className='product-img' src={product.imagePath} alt='Product image' />
                     )}
                                 <h4>{product.name}</h4>
                                 <p>{product.description}</p>
-                                <p>Price: {product.price} $</p>
+                                <p>Unit Price: {product.price} $</p>
                                 <p>Quantity: {product.quantity} items</p>
-                                <p>Category: {product.category}</p>
                                 <div className='productBtns'>
                                     <button className='editBtn'>Edit</button>
                                     <button className='deleteBtn' onClick={() => handleDeleteBtnClick(product.id)}>Delete</button>

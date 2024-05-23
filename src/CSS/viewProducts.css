@@ -35,14 +35,32 @@
     border-radius: 20px;
 }
 
+#view-products .products-category{
+    background-color: black;
+    margin: 20px;
+    border: 1px solid rgb(206, 151, 22);
+    border-radius: 20px;
+    padding: 10px;
+}
+
+#view-products .products-category h2{
+    text-align: left;
+    margin-left: 50px;
+}
+
 #view-products .product{
     background-color: black;
     width: calc(30% - 20px);
     height: auto;
-    margin: 20px auto;
+    margin: 0 auto;
     border-radius: 10px;
     padding: 10px;
     border: 1px solid white;
+}
+ .product img{
+    width: 100px;
+    height: auto;
+    border-radius: 50%;
 }
 #view-products .productBtns button{
     width: 100px;
