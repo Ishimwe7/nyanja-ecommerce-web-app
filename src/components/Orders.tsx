@@ -166,7 +166,7 @@ const Orders:React.FC =()=>{
                                          {order.products.map(product => (
                                                 <tr className='order-product' key={product.id}>
                                                     <td>{product.name}</td>
-                                                    <td>{product.imagePath}</td>
+                                                    <td><img src="{product.imagePath}" alt="product image" /></td>
                                                     <td>{product.quantity}</td>
                                                     <td>${product.price}</td>
                                                 </tr>

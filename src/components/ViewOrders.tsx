@@ -69,11 +69,37 @@ const ViewOrders:React.FC =()=>{
             console.log('Products not found');
         }
     }
+    const deliverOrder= async(oderId:number,e:React.MouseEvent<HTMLButtonElement>)=>{
+        e.preventDefault();
+        try {
+            const response = await fetch(`http://localhost:8080/api/orders/deliverOrder/${oderId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            if (!response.ok) {
+                console.log('Delivering Order......')
+                const errorResponse = await response.json();
+                throw new Error(errorResponse.message || 'Error delivering order');
+            }
+            const data = await response.json();
+            if(data){
+                alert('Order delivered Successfully !');
+            }
+        } catch (error:any) {
+            if (error.message) {
+                setError(error.message);
+            } else {
+                setError('Error fetching orders');
+            }
+        }
+      }
     const cancelOrder= async(oderId:number,e:React.MouseEvent<HTMLButtonElement>)=>{
         e.preventDefault();
         try {
             const response = await fetch(`http://localhost:8080/api/orders/cancelOrder/${oderId}`, {
-                method: 'GET',
+                method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
                 }
@@ -145,8 +171,8 @@ const ViewOrders:React.FC =()=>{
                                  {order.status == 'DELIVERED'&& <span className='delivered-order'><FontAwesomeIcon className='order-status-icon' icon={faCheckCircle} />DELIVERED</span>}
                             </p>
                             <p className='pro-count'><span>{order.products.length} Product(s)</span><button onClick={(e)=>{showProducts(order.id,e)}} className='view-products'>View All</button> </p>
+                            {order.status == 'PENDING'&&<button className='deliver-order' onClick={(e)=>{deliverOrder(order.id,e)}}><FontAwesomeIcon className='cancel-order-icon' icon={faCheckCircle} />Deliver</button>}
                             {order.status == 'PENDING'&&<button className='cancel-order' onClick={(e)=>{cancelOrder(order.id,e)}}><FontAwesomeIcon className='cancel-order-icon' icon={faTimesCircle} />Cancel Order</button>}
-                            
                             </div>
                             <div className='order-products' id={`order-products-${order.id}`} >
                             <span className='close-table' id={`close-table${order.id}`}  onClick={(e)=>{hideProducts(order.id,e)}}><FontAwesomeIcon className='cancel-order-icon' icon={faTimes} /></span>
@@ -164,7 +190,7 @@ const ViewOrders:React.FC =()=>{
                                          {order.products.map(product => (
                                                 <tr className='order-product' key={product.id}>
                                                     <td>{product.name}</td>
-                                                    <td>{product.imagePath}</td>
+                                                    <td><img src="{product.imagePath}" alt="Product Image" /></td>
                                                     <td>{product.quantity}</td>
                                                     <td>${product.price}</td>
                                                 </tr>
