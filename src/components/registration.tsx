@@ -6,7 +6,7 @@ import { FormEvent, ChangeEvent } from 'react';
 
 const RegistrationForm = () => {
 
-    const api_url = 'http://localhost:8080/api/users';
+    const api_url = 'http://localhost:8080/api/public/users';
 
     const [formData, setFormData] = useState({
         names: '',

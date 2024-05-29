@@ -11,7 +11,7 @@ interface Product {
   name: string;
   price: number;
   quantity: number;
-  tempQty:number;
+  orderedQty:number;
 }
 
 interface Cart {
@@ -46,8 +46,8 @@ interface User{
 
 const CartComponent: React.FC = () => {
 
-  const cart_url = 'http://localhost:8080/api/cart';
-  const orders_url = 'http://localhost:8080/api/orders';
+  const cart_url = 'http://localhost:8080/api/private/cart';
+  const orders_url = 'http://localhost:8080/api/private/orders';
     let userId: number | null = null;
     let user: User | null = null;
     const loggedUser = sessionStorage.getItem('loggedUser');
@@ -113,9 +113,44 @@ const CartComponent: React.FC = () => {
     const newQuantities = [...quantity];
     newQuantities[index] = newQuantity;
     setQuantity(newQuantities);
-    product.tempQty=newQuantity
+    product.orderedQty=newQuantity
   };
 
+  // const resetOrderQuantity = (product:Product)=>{
+  //   product.quantity=quantity[product.id];
+  //   console.log("Product Quantities",quantity);
+  //   console.log('Old qty: '+product.quantity+" New Qty: "+product.tempQty)
+  //   return product;
+  // }
+
+  // const updateOrder = () => {
+  //   if (cart) {
+  //     const updatedProducts = cart.products.map((product) => resetOrderQuantity(product));
+  //     setOrder((prevOrder) => ({
+  //       ...prevOrder,
+  //       products: updatedProducts,
+  //     }));
+  //   }
+  // };
+
+  // const resetOrderQuantity = () => {
+  //   if (cart) {
+  //     const updatedProducts = cart.products.map((product, index) => ({
+  //       ...product,
+  //       quantity: quantity[index],
+  //     }));
+  //     return updatedProducts;
+  //   }
+  //   return [];
+  // };
+
+  // const updateOrder = () => {
+  //   const updatedProducts = resetOrderQuantity();
+  //   setOrder((prevOrder) => ({
+  //     ...prevOrder,
+  //     products: updatedProducts,
+  //   }));
+  // };
   const handleOrderDetailsChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setOrder({
@@ -125,6 +160,7 @@ const CartComponent: React.FC = () => {
 };
   const placeOrder = async(event:React.FormEvent)=>{
     event.preventDefault();
+    //updateOrder();
     if(user){
       try{
       const response = await fetch(orders_url+'/placeOrder',{
@@ -137,6 +173,7 @@ const CartComponent: React.FC = () => {
       const data = await response.json();
       if (response.ok) {
         alert('Order Placed Successfully');
+        location.reload();
         console.log(data);
      }
      else {
@@ -224,7 +261,7 @@ const CartComponent: React.FC = () => {
       try {
         if (!userId) return;
       //  const response = await fetch('/api/cart/getCartByOwner/'+userId);
-        const response = await fetch('http://localhost:8080/api/cart/getCartByOwner/'+userId, {
+        const response = await fetch(cart_url+'/getCartByOwner/'+userId, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'

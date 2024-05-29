@@ -30,7 +30,8 @@ interface User{
     paymentMethod:string;
     deliveryAddress:string;
     deliveryPhoneNumber:string;
-    products: Product[]
+    products: Product[];
+    quantities: number[]; 
   }
 
 const Orders:React.FC =()=>{
@@ -71,11 +72,17 @@ const Orders:React.FC =()=>{
             console.log('Products not found');
         }
     }
+
+    const updateOrderStatus = (orderId: number, newStatus: string) => {
+        setOrders(orders.map(order => 
+            order.id === orderId ? { ...order, status: newStatus } : order
+        ));
+    };
     const cancelOrder= async(oderId:number,e:React.MouseEvent<HTMLButtonElement>)=>{
         e.preventDefault();
         try {
-            const response = await fetch(`http://localhost:8080/api/orders/cancelOrder/${oderId}`, {
-                method: 'GET',
+            const response = await fetch(`http://localhost:8080/api/private/orders/cancelOrder/${oderId}`, {
+                method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
                 }
@@ -88,6 +95,7 @@ const Orders:React.FC =()=>{
             const data = await response.json();
             if(data){
                 alert('Order Cancelled Successfully !');
+                updateOrderStatus(oderId, 'CANCELED');
             }
         } catch (error:any) {
             if (error.message) {
@@ -102,7 +110,7 @@ const Orders:React.FC =()=>{
         const fetchOrders = async () => {
             
             try {
-                const response = await fetch(`http://localhost:8080/api/orders/getOrdersByOwner/${userId}`, {
+                const response = await fetch(`http://localhost:8080/api/private/orders/getOrdersByOwner/${userId}`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json'
@@ -163,11 +171,11 @@ const Orders:React.FC =()=>{
                                     </tr>
                                 </thead>
                                 <tbody>
-                                         {order.products.map(product => (
+                                         {order.products.map((product,index) => (
                                                 <tr className='order-product' key={product.id}>
                                                     <td>{product.name}</td>
-                                                    <td><img src="{product.imagePath}" alt="product image" /></td>
-                                                    <td>{product.quantity}</td>
+                                                    <td><img src={product.imagePath} alt="product image" /></td>
+                                                    <td>{order.quantities[index]}</td>
                                                     <td>${product.price}</td>
                                                 </tr>
                                             ))}
@@ -181,7 +189,7 @@ const Orders:React.FC =()=>{
                         </div>
                     ))
                 ) : (
-                    <p>No orders found.</p>
+                    <h2 id='no-order'>No orders found.</h2>
                 )}
           </div>
     </div>

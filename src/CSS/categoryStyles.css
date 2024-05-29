@@ -59,17 +59,27 @@
 }
 
 #category-products .product{
-    background-color: black;
-    width: calc(30% - 20px);
-    height: 200px;
+     /* background-color: black;  */
+    width: calc(25% - 20px);
+    height: 380px;
     margin: 20px auto;
     border-radius: 10px;
     padding: 10px;
-    border: 1px solid white;
+    /* border: 1px solid white; */
+    text-align: left; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
+#category-products .product img.product-img{
+    border-radius: 20px;
+    width: 70%;
+    padding: 10px;
+}
+
 #category-products .productBtns button{
     width: 100px;
-    margin: 10px;
+    margin: auto;
 }
 #category-products .productBtns .editBtn{
     background: rgb(206, 151, 22);
@@ -88,4 +98,6 @@
     background-color: rgb(206, 151, 22);
     color: white;
     margin-top: 20px;
+    width: 60%;
+    margin: 10px 0;
 }

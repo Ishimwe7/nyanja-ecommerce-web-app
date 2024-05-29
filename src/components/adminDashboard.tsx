@@ -20,6 +20,7 @@ const AdminDashoard = () => {
     const [showAdd, setShowAddProduct] = useState(false);
     const [showProducts, setShowProducts] = useState(false);
     const [showOrders, setShowOrders] = useState(false);
+   // const [logout, setLogout] = useState(false);
     //const [showSales, setShowSales] = useState(false);
 
     // useEffect(() => {
@@ -27,6 +28,15 @@ const AdminDashoard = () => {
     //     isAdminLoggedIn ?  setLoggedAdmin(true) :  setLoggedAdmin(false)
     //     // console.log(isAdminLoggedIn);
     // }, [navigate]);
+
+    const logoutAdmin = (event:React.MouseEvent) => {
+        // Perform logout actions
+        event.preventDefault();
+        console.log("Logging out ")
+        sessionStorage.removeItem('loggedAdmin');
+        console.log("Logging out ")
+        navigate('/login');
+    };
 
     useEffect(() => {
         const isAdminLoggedIn = sessionStorage.getItem('loggedAdmin');
@@ -78,7 +88,7 @@ const AdminDashoard = () => {
                     <li className='sub-links' onClick={ShowAllProducts}><FontAwesomeIcon className='side-icons' icon={faEye} /> View All Products</li>
                     <li className='sub-links' onClick={ShowAllOrders}><FontAwesomeIcon className='side-icons' icon={faListAlt} /> View All Orders</li>
                     <li className='sub-links'><FontAwesomeIcon className='side-icons' icon={faChartBar} />Sales Report</li>
-                    <li className='sub-links' id='admin-logout'><FontAwesomeIcon className='side-icons' icon={faSignOutAlt} />Logout</li>
+                    <li className='sub-links' onClick={(e)=>{logoutAdmin(e)}} id='admin-logout'><FontAwesomeIcon className='side-icons' icon={faSignOutAlt} />Logout</li>
                 </ul>
             </div>
             {showAdd && <AddProduct />}

@@ -15,8 +15,8 @@ interface Product {
 
 const Food_BeveragesProducts: React.FC = () => {
 
-    const api_url = 'http://localhost:8080/api/products';
-    const cart_url = 'http://localhost:8080/api/cart';
+    const api_url = 'http://localhost:8080/api/public/products';
+    const cart_url = 'http://localhost:8080/api/private/cart';
     const [products, setProducts] = useState<Product[]>([]);
     const [loginFirst, setLoginFirst] = useState('');
 
@@ -106,9 +106,9 @@ const Food_BeveragesProducts: React.FC = () => {
                     )}
                             <h4>{product.name}</h4>
                             <p>{product.description}</p>
-                            <p>Price: {product.price} $</p>
-                            <p>Quantity: {product.quantity} items</p>
-                            <button onClick={(e)=>{addCart(product, e)}} id='addCart'>Add Cart</button>
+                            <p>Unit Price: {product.price} $</p>
+                            <p>Available Qty: {product.quantity} items</p>
+                            <button onClick={(e)=>{addCart(product, e)}} id='addCart'>Add to Cart</button>
                         </div>
                     ))}
                 </div>

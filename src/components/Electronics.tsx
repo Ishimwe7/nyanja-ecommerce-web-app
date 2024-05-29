@@ -15,8 +15,8 @@ interface Product {
 
 const ElectronicsProducts: React.FC = () => {
 
-    const api_url = 'http://localhost:8080/api/products';
-    const cart_url = 'http://localhost:8080/api/cart';
+    const api_url = 'http://localhost:8080/api/public/products';
+    const cart_url = 'http://localhost:8080/api/private/cart';
     const [products, setProducts] = useState<Product[]>([]);
     const [loginFirst, setLoginFirst] = useState('');
 
@@ -103,13 +103,13 @@ const ElectronicsProducts: React.FC = () => {
                     {electronicsProducts.map(product => (
                         <div key={product.id} className="product">
                                 {product.imagePath && (
-                        <img className='product-img' src={`http://localhost:8080/products/images/${product.imagePath}`} alt={product.imagePath} />
+                        <img className='product-img' src={product.imagePath} alt='Product Image' />
                     )}
                             <h4>{product.name}</h4>
                             <p>{product.description}</p>
-                            <p>Price: {product.price} $</p>
-                            <p>Quantity: {product.quantity} items</p>
-                            <button onClick={(e)=>{addCart(product, e)}}  id='addCart'>Add Cart</button>
+                            <p>Unit Price: {product.price} $</p>
+                            <p>Available Qty: {product.quantity} items</p>
+                            <button onClick={(e)=>{addCart(product, e)}}  id='addCart'>Add to Cart</button>
                         </div>
                     ))}
                 </div>

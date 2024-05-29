@@ -45,7 +45,9 @@
 
 #view-products .products-category h2{
     text-align: left;
-    margin-left: 50px;
+    margin-left: 20px;
+    color: rgb(206, 151, 22);
+    font-size: xx-large;
 }
 
 #view-products .product{
@@ -63,8 +65,8 @@
     border-radius: 50%;
 }
 #view-products .productBtns button{
-    width: 100px;
-    margin: 10px;
+    width: 80px;
+    margin: 5px;
 }
 #view-products .productBtns .editBtn{
     background: rgb(206, 151, 22);
@@ -72,7 +74,7 @@
 #view-products h1{
     color: rgb(206, 151, 22);
     font-size: xx-large;
-    margin-bottom: 30px;
+    text-align: center;
 }
 #view-products .productBtns .deleteBtn{
     background: rgb(226, 124, 124);
@@ -89,4 +91,79 @@
     width: 160px;
     height: auto;
     border: 20px;
+}
+.products-table {
+    width: 97%;
+    border-collapse: collapse;
+    margin: 20px;
+}
+
+.products-table th, .products-table td {
+    border: 1px solid #ddd;
+    padding: 5px;
+    width: 15%;
+
+}
+.products-table th:last-child, .products-table td:last-child{
+    width: 20%;
+}
+
+.products-table th {
+    text-align: center;
+}
+.product-img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.edit-form {
+    padding: 20px;
+    border: 1px solid #ddd;
+    margin-top: 20px;
+    background-color: black;
+    color: white;
+    width: 50%;
+    margin: auto;
+    border-radius: 20px;
+    position: absolute;
+    top: 10px;
+    left: 260px;
+    z-index: 2000;
+}
+
+.edit-form form div {
+    margin-bottom: 10px;
+}
+
+.edit-form label {
+    display: block;
+    margin-bottom: 5px;
+    text-align: left;
+    font-size: larger;
+    margin-left: 30px;
+}
+
+.edit-form input, .edit-form textarea {
+    width: 90%;
+    padding: 8px;
+    box-sizing: border-box;
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+}
+.edit-form input{
+    height: 40px;
+}
+ .edit-form textarea{
+    height: 60px;
+ }
+.edit-form button {
+    margin-right: 10px;
+}
+
+.edit-form .save-update{
+    background-color: rgb(206, 151, 22);
+    color: black;
 }

@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 const AddProduct = () => {
 
-    const api_url = 'http://localhost:8080/api/products';
+    const api_url = 'http://localhost:8080/api/private/products';
     // const cloudinary_url ='https://api.cloudinary.com/v1_1/YOUR_CLOUD_NAME/image/upload';
     // const upload_preset = 'YOUR_UPLOAD_PRESET';
 

@@ -7,7 +7,8 @@ import { FormEvent, ChangeEvent } from 'react';
 const LoginForm = () => {
 
     const navigate = useNavigate();
-    const api_url = 'http://localhost:8080/api/users';
+    const api_url = 'http://localhost:8080/api/public/users';
+    //const api_url = 'http://ec2-13-49-229-177.eu-north-1.compute.amazonaws.com:8080/api/public/users';
 
     const [formData, setFormData] = useState({
         email: '',
@@ -44,6 +45,7 @@ const LoginForm = () => {
                     } else {
                         // console.log(data)
                         setError('Invalid Credentials !');
+                        console.log(data);
                     }
                 }
                 else{
@@ -53,6 +55,7 @@ const LoginForm = () => {
             }
             else {
                 setError('Invalid Credentials !');
+                console.log(data);
             }
         } catch (error) {
             console.error('Error:', error);
