@@ -17,6 +17,23 @@
     font-size: xx-large;
 }
 
+#admin-main-content .welcome-content{
+    color: white;
+    font-size: x-large;
+    margin-top: 80px;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
+}
+#admin-main-content .current-time{
+    background-color: rgb(206, 151, 22);
+    border-radius: 20px;
+    padding: 10px;
+    color: black;
+}
+
 /* Hide scrollbar for Chrome, Safari and Opera */
 #admin-main-content::-webkit-scrollbar {
     display: none;
