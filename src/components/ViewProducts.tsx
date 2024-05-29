@@ -271,6 +271,7 @@ const ViewProducts: React.FC = () => {
                             <label>Name:</label>
                             <input
                                 type="text"
+                                required
                                 name="name"
                                 value={currentProduct.name}
                                 onChange={handleFormChange}
@@ -289,6 +290,7 @@ const ViewProducts: React.FC = () => {
                             <input
                                 type="number"
                                 name="price"
+                                required
                                 value={currentProduct.price}
                                 onChange={handleFormChange}
                             />
@@ -298,6 +300,7 @@ const ViewProducts: React.FC = () => {
                             <input
                                 type="number"
                                 name="quantity"
+                                required
                                 value={currentProduct.quantity}
                                 onChange={handleFormChange}
                             />
@@ -307,6 +310,7 @@ const ViewProducts: React.FC = () => {
                             <input
                                 type="text"
                                 name="category"
+                                required
                                 value={currentProduct.category}
                                 onChange={handleFormChange}
                             />
@@ -316,6 +320,7 @@ const ViewProducts: React.FC = () => {
                             <input
                                 type="text"
                                 name="imagePath"
+                                required
                                 value={currentProduct.imagePath}
                                 onChange={handleFormChange}
                             />
