@@ -34,6 +34,10 @@ interface User{
     products: Product[];
     quantities: number[]; 
   }
+
+  interface FetchError extends Error {
+    message: string;
+}
 const ViewOrders:React.FC =()=>{
 
     const [orders, setOrders] = useState<Order[]>([]);
@@ -59,7 +63,7 @@ const ViewOrders:React.FC =()=>{
             console.log('Products not found');
         }
     }
-    const hideProducts =(orderId:number, event:React.MouseEvent<HTMLButtonElement>)=>{
+    const hideProducts =(orderId:number, event:React.MouseEvent)=>{
         event.preventDefault();
         const products = document.getElementById('order-products-'+orderId);
         if(products){
@@ -94,12 +98,14 @@ const ViewOrders:React.FC =()=>{
                 alert('Order delivered Successfully !');
                 updateOrderStatus(oderId, 'DELIVERED');
             }
-        } catch (error:any) {
-            if (error.message) {
-                setError(error.message);
-            } else {
-                setError('Error fetching orders');
-            }
+        } catch (error) {
+            const typedError = error as FetchError;
+            setError(typedError.message || 'Error fetching orders');
+            // if (error.message) {
+            //     setError(error.message);
+            // } else {
+            //     setError('Error fetching orders');
+            // }
         }
       }
     const cancelOrder= async(oderId:number,e:React.MouseEvent<HTMLButtonElement>)=>{
@@ -121,12 +127,14 @@ const ViewOrders:React.FC =()=>{
                 alert('Order Cancelled Successfully !');
                 updateOrderStatus(oderId, 'CANCELED');
             }
-        } catch (error:any) {
-            if (error.message) {
-                setError(error.message);
-            } else {
-                setError('Error fetching orders');
-            }
+        } catch (error) {
+            const typedError = error as FetchError;
+            setError(typedError.message || 'Error fetching orders');
+            // if (error.message) {
+            //     setError(error.message);
+            // } else {
+            //     setError('Error fetching orders');
+            // }
         }
       }
     useEffect(() => {
@@ -148,12 +156,14 @@ const ViewOrders:React.FC =()=>{
 
                 const data = await response.json();
                 setOrders(data);
-            } catch (error:any) {
-                if (error.message) {
-                    setError(error.message);
-                } else {
-                    setError('Error fetching orders');
-                }
+            } catch (error) {
+                const typedError = error as FetchError;
+                setError(typedError.message || 'Error fetching orders');
+                // if (error.message) {
+                //     setError(error.message);
+                // } else {
+                //     setError('Error fetching orders');
+                // }
             }
         };
         fetchOrders();
