@@ -1,30 +1,66 @@
-# React + TypeScript + Vite
+# React E-commerce Web App with TypeScript and Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This template provides a minimal setup to get a React e-commerce web application working in Vite.
 
-Currently, two official plugins are available:
+## Table of Contents
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [Getting Started](#getting-started)
+  - [Installation](#installation)
+  - [Development](#development)
+- [Project Structure](#project-structure)
+  - [Key Components and Pages](#key-components-and-pages)
+- [Conclusion](#conclusion)
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Installation
 
-- Configure the top-level `parserOptions` property like this:
+To create a new project using this template, run the following commands:
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+```sh
+npm create vite@latest my-ecommerce-app --template react-ts
+cd my-ecommerce-app
+npm install
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+### To run the project
+
+1. Clone this repo first by:
+   git clone https://github.com/Ishimwe7/nyanja-ecommerce-web-app.git
+2. In root directory access the terminal and run:
+   npm run dev
+
+### Hosted Version on netlify:
+
+**https://nyanja-shopping-mall.netlify.app/**
+
+## Project Structure
+
+### Key components and pages
+
+nyanja-ecommerce-web-app/
+├── public/
+│ └── \_redirects
+├── src/
+│ ├── assets/
+│ │ └── pictures/
+│ ├── components/
+│ │ ├── AdminDashboard.tsx
+│ │ ├── footer.tsx
+│ │ ├── header.tsx
+│ │ ├── ProductItem.tsx
+│ │ ├── Cart.tsx
+│ │ └── loginForm.tsx
+│ │ ├── Orders.tsx
+│ │ ├── ProductPage.tsx
+│ │ ├── CartPage.tsx
+│ │ ├── registration.tsx
+│ │ └── AddProduct.tsx
+│ ├── App.tsx
+│ ├── main.tsx
+│ └── index.css
+├── .eslintrc.js
+├── tsconfig.json
+├── tsconfig.node.json
+├── vite.config.ts
+└── package.json
