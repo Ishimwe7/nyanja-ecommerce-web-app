@@ -38,31 +38,31 @@ npm install
 
 ### Key components and pages
 
-nyanja-ecommerce-web-app/
-├── public/
-│ └── \_redirects
-├── src/
-│ ├── assets/
-│ │ └── pictures/
-│ ├── components/
-│ │ ├── AdminDashboard.tsx
-│ │ ├── footer.tsx
-│ │ ├── header.tsx
-│ │ ├── ProductItem.tsx
-│ │ ├── Cart.tsx
-│ │ ├── loginForm.tsx
-│ │ ├── Orders.tsx
-│ │ ├── ProductPage.tsx
-│ │ ├── CartPage.tsx
-│ │ ├── registration.tsx
-│ │ └── AddProduct.tsx
-│ ├── App.tsx
-│ ├── main.tsx
-│ └── index.css
-├── .eslintrc.js
-├── tsconfig.json
-├── tsconfig.node.json
-├── vite.config.ts
+nyanja-ecommerce-web-app/  
+├── public/  
+│ └── \_redirects  
+├── src/  
+│ ├── assets/  
+│ │ └── pictures/  
+│ ├── components/  
+│ │ ├── AdminDashboard.tsx  
+│ │ ├── footer.tsx  
+│ │ ├── header.tsx  
+│ │ ├── ProductItem.tsx  
+│ │ ├── Cart.tsx  
+│ │ ├── loginForm.tsx  
+│ │ ├── Orders.tsx  
+│ │ ├── ProductPage.tsx  
+│ │ ├── CartPage.tsx  
+│ │ ├── registration.tsx  
+│ │ └── AddProduct.tsx  
+│ ├── App.tsx  
+│ ├── main.tsx  
+│ └── index.css  
+├── .eslintrc.js  
+├── tsconfig.json  
+├── tsconfig.node.json  
+├── vite.config.ts  
 └── package.json
 
 ## Conclusion
